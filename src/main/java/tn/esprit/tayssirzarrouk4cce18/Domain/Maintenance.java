@@ -4,10 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-@Entity @Table(name = "maintenance")
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "maintenance")
 public class Maintenance {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMaintenance;
     private LocalDate dateDebut;
     private LocalDate dateFin;

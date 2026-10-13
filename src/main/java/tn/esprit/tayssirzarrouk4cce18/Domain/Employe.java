@@ -3,10 +3,16 @@ package tn.esprit.tayssirzarrouk4cce18.Domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-@Entity @Table(name = "employe")
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "employe")
 public class Employe {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmploye;
     private String nom;
     private String prenom;

@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
 @Table(name = "vehicule")
 public class Vehicule {
     @Id
@@ -33,22 +33,16 @@ public class Vehicule {
     private Agence agence;
 
     @OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
-    @JsonIgnore
-    @ToString.Exclude
-    @Builder.Default
+    @JsonIgnore @ToString.Exclude @Builder.Default
     private List<Maintenance> maintenances = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "vehicule_equipement",
-            joinColumns = @JoinColumn(name = "vehicule_id"),
+    @JoinTable(name = "vehicule_equipement", joinColumns = @JoinColumn(name = "vehicule_id"),
             inverseJoinColumns = @JoinColumn(name = "equipement_id"))
-    @ToString.Exclude
-    @Builder.Default
+    @ToString.Exclude @Builder.Default
     private List<Equipement> equipements = new ArrayList<>();
 
     @OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
-    @JsonIgnore
-    @ToString.Exclude
-    @Builder.Default
+    @JsonIgnore @ToString.Exclude @Builder.Default
     private List<Reservation> reservations = new ArrayList<>();
 }
