@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class VehiculeServiceImpl implements VehiculeService {
+
     private final VehiculeRepository vehiculeRepository;
 
     public VehiculeServiceImpl(VehiculeRepository vehiculeRepository) {
