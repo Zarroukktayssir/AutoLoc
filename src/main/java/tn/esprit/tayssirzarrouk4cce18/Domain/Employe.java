@@ -1,5 +1,6 @@
 package tn.esprit.tayssirzarrouk4cce18.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Table(name = "employe")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Employe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

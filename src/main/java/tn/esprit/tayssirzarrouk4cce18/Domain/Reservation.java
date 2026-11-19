@@ -1,6 +1,7 @@
 package tn.esprit.tayssirzarrouk4cce18.Domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Table(name = "reservation")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
