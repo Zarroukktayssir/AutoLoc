@@ -10,8 +10,10 @@ public class JacksonConfig {
     @Bean
     public Hibernate6Module hibernate6Module() {
         Hibernate6Module module = new Hibernate6Module();
+        // Ne pas forcer le chargement des proxies lazy — les ignorer dans le JSON
         module.disable(Hibernate6Module.Feature.USE_TRANSIENT_ANNOTATION);
-        module.enable(Hibernate6Module.Feature.FORCE_LAZY_LOADING);
+        module.disable(Hibernate6Module.Feature.FORCE_LAZY_LOADING);
+        module.enable(Hibernate6Module.Feature.SERIALIZE_IDENTIFIER_FOR_LAZY_NOT_LOADED_OBJECTS);
         return module;
     }
 }
