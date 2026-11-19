@@ -2,6 +2,7 @@ package tn.esprit.tayssirzarrouk4cce18.WebController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class VehiculeRestController {
     }
 
     @GetMapping
-    @Operation(summary = "Lister les vehicule")
+    @Operation(summary = "Lister les vehicules")
     public List<Vehicule> findAll() {
         return vehiculeService.getAllVehicules();
     }
@@ -61,6 +62,48 @@ public class VehiculeRestController {
         vehiculeService.deleteVehicule(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{idVehicule}/agence/{idAgence}")
+    @Operation(summary = "Affecter un vehicule a une agence")
+    public ResponseEntity<Vehicule> assignVehiculeToAgence(@PathVariable Long idVehicule,
+                                                           @PathVariable Long idAgence) {
+        try {
+            return ResponseEntity.ok(vehiculeService.assignVehiculeToAgence(idVehicule, idAgence));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{idVehicule}/agence/{idAgence}/unassign")
+    @Operation(summary = "Desaffecter un vehicule d'une agence")
+    public ResponseEntity<Vehicule> unassignVehiculeToAgence(@PathVariable Long idVehicule,
+                                                             @PathVariable Long idAgence) {
+        try {
+            return ResponseEntity.ok(vehiculeService.unassignVehiculeToAgence(idVehicule, idAgence));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{idVehicule}/equipements/{idEquipement}")
+    @Operation(summary = "Affecter un equipement a un vehicule")
+    public ResponseEntity<Vehicule> assignVehiculeToEquipement(@PathVariable Long idVehicule,
+                                                               @PathVariable Long idEquipement) {
+        try {
+            return ResponseEntity.ok(vehiculeService.assignVehiculeToEquipement(idVehicule, idEquipement));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{idVehicule}/equipements/{idEquipement}/unassign")
+    @Operation(summary = "Desaffecter un equipement d'un vehicule")
+    public ResponseEntity<Vehicule> unassignVehiculeToEquipement(@PathVariable Long idVehicule,
+                                                                 @PathVariable Long idEquipement) {
+        try {
+            return ResponseEntity.ok(vehiculeService.unassignVehiculeToEquipement(idVehicule, idEquipement));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
-
-

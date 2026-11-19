@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface VehiculeService {
+
     List<Vehicule> getAllVehicules();
 
     Optional<Vehicule> getVehiculeById(Long id);
@@ -13,4 +14,12 @@ public interface VehiculeService {
     Vehicule saveVehicule(Vehicule vehicule);
 
     void deleteVehicule(Long id);
+
+    Vehicule assignVehiculeToAgence(Long idVehicule, Long idAgence);
+
+    Vehicule unassignVehiculeToAgence(Long idVehicule, Long idAgence);
+
+    Vehicule assignVehiculeToEquipement(Long idVehicule, Long idEquipement);
+
+    Vehicule unassignVehiculeToEquipement(Long idVehicule, Long idEquipement);
 }
