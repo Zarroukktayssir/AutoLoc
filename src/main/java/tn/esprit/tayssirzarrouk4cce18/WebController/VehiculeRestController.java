@@ -106,4 +106,16 @@ public class VehiculeRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/unassignedEquipement/{idVehicule}/{idEquipement}")
+    public Vehicule unassignedEquipement(@PathVariable Long idVehicule,
+                                         @PathVariable Long idEquipement) {
+        return vehiculeService.unassignedEquipement(idVehicule, idEquipement);
+    }
+
+    @PostMapping("/addVehiculeAndAssignAgence/{idAgence}")
+    public Vehicule addVehiculeAndAssignAgence(@RequestBody Vehicule vehicule,
+                                               @PathVariable Long idAgence) {
+        return vehiculeService.addVehiculeAndAssignAgence(vehicule, idAgence);
+    }
 }

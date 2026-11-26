@@ -100,4 +100,25 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
         return vehiculeRepository.save(vehicule);
     }
+
+    @Override
+    public Vehicule unassignedEquipement(Long idVehicule, Long idEquipement) {
+        Vehicule vehicule = vehiculeRepository.findById(idVehicule)
+                .orElseThrow(() -> new EntityNotFoundException("Vehicule introuvable : " + idVehicule));
+        Equipement equipement = equipementRepository.findById(idEquipement)
+                .orElseThrow(() -> new EntityNotFoundException("Equipement introuvable : " + idEquipement));
+        // on enlève le fils du parent :
+        vehicule.getEquipements().remove(equipement);
+        return vehiculeRepository.save(vehicule);
+    }
+
+    @Override
+    public Vehicule addVehiculeAndAssignAgence(Vehicule vehicule, Long idAgence) {
+        Agence agence = agenceRepository.findById(idAgence)
+                .orElseThrow(() -> new RuntimeException("Agence introuvable : " + idAgence));
+        if (agence != null) {
+            vehicule.setAgence(agence);
+        }
+        return vehiculeRepository.save(vehicule);
+    }
 }
