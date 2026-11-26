@@ -1,6 +1,7 @@
 package tn.esprit.tayssirzarrouk4cce18.Service;
 
 import tn.esprit.tayssirzarrouk4cce18.Domain.Vehicule;
+import tn.esprit.tayssirzarrouk4cce18.WebController.Dto.VehiculeDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,4 +27,8 @@ public interface VehiculeService {
     Vehicule unassignedEquipement(Long idVehicule, Long idEquipement);
 
     Vehicule addVehiculeAndAssignAgence(Vehicule vehicule, Long idAgence);
+
+    VehiculeDto toDto(Vehicule vehicule);
+
+    VehiculeDto getVehiculeeDtoById(Long id);
 }

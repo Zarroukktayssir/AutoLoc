@@ -10,6 +10,7 @@ import tn.esprit.tayssirzarrouk4cce18.Repository.AgenceRepository;
 import tn.esprit.tayssirzarrouk4cce18.Repository.EquipementRepository;
 import tn.esprit.tayssirzarrouk4cce18.Repository.VehiculeRepository;
 import tn.esprit.tayssirzarrouk4cce18.Service.VehiculeService;
+import tn.esprit.tayssirzarrouk4cce18.WebController.Dto.VehiculeDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -120,5 +121,25 @@ public class VehiculeServiceImpl implements VehiculeService {
             vehicule.setAgence(agence);
         }
         return vehiculeRepository.save(vehicule);
+    }
+
+    @Override
+    public VehiculeDto toDto(Vehicule vehicule) {
+        VehiculeDto dto = new VehiculeDto();
+        dto.setImmatriculation(vehicule.getImmatriculation());
+        dto.setMarque(vehicule.getMarque());
+        dto.setModele(vehicule.getModele());
+        dto.setCategorie(vehicule.getCategorie());
+        dto.setTarifJournalier(vehicule.getTarifJournalier());
+        if (vehicule.getAgence() != null) {
+            dto.setNomAgence(vehicule.getAgence().getNom());
+        }
+        return dto;
+    }
+
+    @Override
+    public VehiculeDto getVehiculeeDtoById(Long id) {
+        Vehicule vehicule = vehiculeRepository.findById(id).orElse(null);
+        return toDto(vehicule);
     }
 }
