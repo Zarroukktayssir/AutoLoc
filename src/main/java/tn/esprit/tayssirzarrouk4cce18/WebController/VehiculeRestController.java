@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tayssirzarrouk4cce18.Domain.Vehicule;
 import tn.esprit.tayssirzarrouk4cce18.Service.VehiculeService;
+import tn.esprit.tayssirzarrouk4cce18.WebController.Dto.VehiculeDto;
 
 import java.util.List;
 
@@ -117,5 +118,10 @@ public class VehiculeRestController {
     public Vehicule addVehiculeAndAssignAgence(@RequestBody Vehicule vehicule,
                                                @PathVariable Long idAgence) {
         return vehiculeService.addVehiculeAndAssignAgence(vehicule, idAgence);
+    }
+
+    @GetMapping("/dto/{id}")
+    public VehiculeDto getVehiculeeDtoById(@PathVariable Long id) {
+        return vehiculeService.getVehiculeeDtoById(id);
     }
 }
